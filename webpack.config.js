@@ -55,10 +55,13 @@ if (TARGET === "start" || !TARGET) {
         devtool: "eval-source-map",
         devServer: {
             publicPath: PATHS.publicPath,
+            hot: true,
+            inline: true,
             progress: true,
             stats: "error-only"
         },
         plugins: [
+            new webpack.HotModuleReplacementPlugin(),
             new webpack.DefinePlugin({
                 "process.env.NODE_ENV": "\"development\""
             })

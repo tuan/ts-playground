@@ -1,3 +1,8 @@
 import * as Rx from "rxjs/Rx";
 
-Rx.Observable.of(1, 2, 3).subscribe(value => console.log(value));
+let button = document.querySelector("button");
+
+Rx.Observable.fromEvent(button, "click")
+    .throttleTime(1000)
+    .map((event: MouseEvent) => event.clientX)
+    .subscribe(x => console.log(x + 1));
