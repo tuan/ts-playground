@@ -1,5 +1,3 @@
-import * as _ from "lodash";
+import * as Rx from "rxjs/Rx";
 
-_.range(1, 4).forEach(() => {
-    console.log("working ...");
-});
+Rx.Observable.of(1, 2, 3).subscribe(value => console.log(value));

@@ -12,6 +12,7 @@
   "license": "ISC",
   "devDependencies": {
     "css-loader": "^0.25.0",
+    "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "source-map-loader": "^0.1.5",
     "style-loader": "^0.13.1",
@@ -22,9 +23,12 @@
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.16.1",
     "webpack-merge": "^0.14.1",
-    "@types/lodash": "^4.14.35"
+    "@types/lodash": "^4.14.35",
+    "@types/es6-shim": "^0.31.32"
   },
   "dependencies": {
-    "lodash": "^4.16.1"
+    "es6-promise": "3.2.1",
+    "lodash": "^4.16.1",
+    "rxjs": "^5.0.0-beta.12"
   }
 }

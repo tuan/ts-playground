@@ -9,7 +9,12 @@
         "moduleResolution": "node",
         "removeComments": false,
         "noFallthroughCasesInSwitch": true,
-        "noImplicitReturns": true
+        "noImplicitReturns": true,
+        "lib": [
+            "es5",
+            "dom",
+            "es2015.promise"
+        ]
     },
     "exclude": [
         "node_modules"
