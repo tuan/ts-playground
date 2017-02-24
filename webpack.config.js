@@ -56,12 +56,15 @@ if (TARGET === "start" || !TARGET) {
         devServer: {
             publicPath: PATHS.publicPath,
             progress: true,
-            stats: "error-only"
+            stats: "error-only",
+            inline: true,
+            hot: true
         },
         plugins: [
             new webpack.DefinePlugin({
                 "process.env.NODE_ENV": "\"development\""
-            })
+            }),
+            new webpack.HotModuleReplacementPlugin()
         ]
     });
 }
