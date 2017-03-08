@@ -23,24 +23,23 @@ const common = {
         publicPath: PATHS.publicPath
     },
     resolve: {
-        extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
+        extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
     },
     module: {
-        preLoaders: [
+        rules: [
             {
                 test: /\.ts$/,
-                loader: "tslint",
+                loader: "tslint-loader",
+                enforce: "pre",
                 include: PATHS.src
-            }
-        ],
-        loaders: [
+            },
             {
                 test: /\.ts$/,
                 loaders: ["ts-loader"]
             },
             {
                 test: /\.less$/,
-                loader: "style!css!less"
+                loader: "style-loader!css-loader!less-loader"
             }
         ]
     }
@@ -55,8 +54,7 @@ if (TARGET === "start" || !TARGET) {
         devtool: "eval-source-map",
         devServer: {
             publicPath: PATHS.publicPath,
-            progress: true,
-            stats: "error-only",
+            stats: "errors-only",
             inline: true,
             hot: true
         },
