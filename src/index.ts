@@ -1,8 +1,33 @@
 import * as Rx from "rxjs/Rx";
 
-let button = document.querySelector("button");
+class Dispatcher extends Rx.Subject<any> {
+    dispatch(value: any) : void {
+        this.next(value);
+    }
+}
+class Store extends Rx.BehaviorSubject<any> {
+    /**
+     *
+     */
+    constructor(
+        private dispatcher: Dispatcher,
+        initialState: any
+    ) {
+        super(initialState);
+        this.dispatcher
+            .subscribe(state => super.next(state));
+    }
 
-Rx.Observable.fromEvent(button, "click")
-    .throttleTime(1000)
-    .map((event: MouseEvent) => event.clientX)
-    .subscribe(x => console.log(x + 1));
+    dispatch(value: any) {
+        this.dispatcher.dispatch(value);
+    }
+
+    next(value: any) {
+        this.dispatcher.dispatch(value);
+    }
+}
+const dispatcher = new Dispatcher();
+const store = new Store(dispatcher, "initial value");
+
+const actionStream$ = new Rx.Subject();
+actionStream$.subscribe(store);
